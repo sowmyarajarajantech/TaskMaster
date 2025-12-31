@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design System Colors - HSL Space Separated */
+  /* #003049 -> 201 100% 14% -> Primary background, header, navigation */
+  --background: 201 100% 14%;
+  --foreground: 41 85% 91%;
+
+  /* #669BBC -> 202 34% 56% -> Secondary background, cards, panels */
+  --card: 202 34% 56%;
+  --card-foreground: 41 85% 91%;
+  
+  /* #FDF0D5 -> 41 85% 91% -> Accents, icons, checkboxes, highlights */
+  --secondary: 41 85% 91%;
+  --secondary-foreground: 201 100% 14%;
+
+  /* #C1121F -> 356 83% 41% -> Primary CTA, high-priority tasks, due-today */
+  --primary: 356 83% 41%;
+  --primary-foreground: 41 85% 91%;
+
+  /* #780000 -> 0 100% 24% -> Delete actions, overdue tasks, destructive states */
+  --destructive: 0 100% 24%;
+  --destructive-foreground: 41 85% 91%;
+
+  /* Muted versions using provided colors with lower opacity */
+  --muted: 202 34% 56% / 0.5;
+  --muted-foreground: 41 85% 91% / 0.7;
+
+  --accent: 41 85% 91%;
+  --accent-foreground: 201 100% 14%;
+
+  --border: 202 34% 56% / 0.3;
+  --input: 202 34% 56% / 0.4;
+  --ring: 41 85% 91%;
+
+  --radius: 0.75rem;
+
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+[data-radix-toast-viewport] {
+  @apply fixed bottom-0 right-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px];
+}
+
+.ToastRoot {
+  @apply bg-background border border-secondary/20 shadow-2xl rounded-2xl p-4 flex items-center justify-between gap-4 pointer-events-auto;
+}
+
+.ToastTitle {
+  @apply text-sm font-bold text-white;
+}
+
+.high-contrast {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 10%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 355 83% 41%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 202 41% 57%;
+  --secondary-foreground: 0 0% 0%;
+  --accent: 40 76% 91%;
+  --accent-foreground: 0 0% 0%;
+  --muted: 0 0% 20%;
+  --muted-foreground: 0 0% 90%;
+  --destructive: 0 100% 24%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 100%;
+  --ring: 202 41% 57%;
+}
+
+.high-contrast * {
+  border-width: 1px !important;
+}
+
+.ToastDescription {
+  @apply text-xs text-foreground/80;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-secondary selection:text-secondary-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .glass-panel {
+    @apply bg-card/90 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+}
